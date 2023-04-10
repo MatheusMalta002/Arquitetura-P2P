@@ -14,7 +14,7 @@
 
 import os
 import time
-from main import Node
+from main import P2P_Node
 
 for i in range(4):
     command = 'python main.py 889{} id{}'.format(i+1,i+1)

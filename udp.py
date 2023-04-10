@@ -3,6 +3,10 @@ import threading
 import sys
 import json
 
+"""As mensagens foram serializadas usando json para
+   poder enviar mensagens mais complexas como dicionários
+   e arrays.
+"""
 
 # Função para enviar mensagem como string para um endereço
 def enviar_mensagem_base(udp_socket, toA, mensagem):
@@ -34,7 +38,11 @@ def broadcast_mensagem_JSON(udp_socket, mensagem, peers):
 
 def broadcast_mensagem_JSON_exclui_user(udp_socket, mensagem, user, peers):
     remetente = str(user)
-    del peers[remetente]
+
+    if remetente in peers:
+        del peers[remetente]
+    else:
+        pass
 
     for p in peers.values():
         enviar_mensagem_JSON(udp_socket, p, mensagem)
