@@ -15,7 +15,7 @@ def enviar_mensagem_base(udp_socket, toA, mensagem):
 
 # Função para receber mensagem e retornar mensagem e endereço
 def receber_mensagem_base(udp_socket):
-    data, addr = udp_socket.recvfrom(1024)
+    data, addr = udp_socket.recvfrom(4096)
     return data.decode(), addr
 
 
@@ -36,7 +36,7 @@ def broadcast_mensagem_JSON(udp_socket, mensagem, peers):
         enviar_mensagem_JSON(udp_socket, p, mensagem)
 
 
-def broadcast_mensagem_JSON_exclui_user(udp_socket, mensagem, user, peers):
+def broadcast_mensagem_JSON_exclui_user(udp_socket, mensagem, user, peers, dicionario_msgs):
     remetente = str(user)
 
     if remetente in peers:
@@ -44,8 +44,13 @@ def broadcast_mensagem_JSON_exclui_user(udp_socket, mensagem, user, peers):
     else:
         pass
 
-    for p in peers.values():
-        enviar_mensagem_JSON(udp_socket, p, mensagem)
+    for p in peers:
+
+        mensagem_criptada = dicionario_msgs[p]
+
+        mensagem['data'] = mensagem_criptada
+
+        enviar_mensagem_JSON(udp_socket, peers[p], mensagem)
 
 
 # Thread para receber mensagens

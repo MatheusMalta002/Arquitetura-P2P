@@ -21,6 +21,7 @@ class P2P_Node:
         self.gerador = 5
         self.dh = DiffieHellman(self.primo, self.gerador)
         self.encryption = Encryption()
+        self.dicionario_msgs = {}
 
     """Método destinatario receber as mensagens"""
 
@@ -55,9 +56,15 @@ class P2P_Node:
                 })
 
             if acao['Tipo'] == 'pares':
-                self.pares.update(acao['data'])  # atualiza o dicinário de pares
-                self.chaves_publicas_ECC_Ed25519.update(acao['dict_key'])  # atualiza o dicionário de chaves publicas
-                self.chaves_publicas_Diffie_Hellman.update(acao["dict_key_DH"]) # atualiza o dicionário diffie hellman
+
+                # atualiza o dicinário de pares
+                self.pares.update(acao['data'])
+
+                # atualiza o dicionário de chaves publicas
+                self.chaves_publicas_ECC_Ed25519.update(acao['dict_key'])
+
+                # atualiza o dicionário diffie hellman
+                self.chaves_publicas_Diffie_Hellman.update(acao["dict_key_DH"]) 
 
                 public_key = acao['public_key']
                 public_key_DH = acao['public_key_DH']
@@ -121,7 +128,7 @@ class P2P_Node:
                 value, key = self.pares.pop(acao['data'])
                 print(f"\n{acao['data']} saiu do chat.")
 
-    """Método destinatario iniciar o par e usar o nó seed destinatario atualizar os outros pares"""
+    """Método para iniciar o par e usar o nó seed para atualizar os outros pares"""
 
     def startpeer(self):
 
@@ -131,7 +138,7 @@ class P2P_Node:
         #Cria a chave pública Diffie Hellman
         public_key_diffie_hellman = self.dh.get_public_key()
 
-        #Envia a chave pública destinatario o nó semente que manda destinatario os outros pares
+        #Envia a chave pública para o nó semente que manda para os outros pares
         UDP.enviar_mensagem_JSON(self.udp_socket, self.seed, {
             "Tipo": "Novo_Par",
             "data": self.myid,
@@ -139,7 +146,7 @@ class P2P_Node:
             "Diffie_Hellman_key": public_key_diffie_hellman
         })
     
-    """Método destinatario enviar as mensagens"""
+    """Método para enviar as mensagens"""
 
     def send(self):
 
@@ -160,13 +167,13 @@ class P2P_Node:
                 continue
             
             #Manda a mensagem para um usuário específico
-            l = msg_input.split()
-            if l[-1] in self.pares.keys():
+            msg = msg_input.split()
+            if msg[-1] in self.pares.keys():
 
-                destinatario = self.pares[l[-1]]
+                destinatario = self.pares[msg[-1]]
 
                 #pega o identificador do destinatário
-                id_destinatario = str(l[-1])
+                id_destinatario = str(msg[-1])
 
                 # pega a chave pública diffie hellman do destinatário no dicionário de chaves
                 chave_destinatario_diffie_hellman = self.chaves_publicas_Diffie_Hellman[id_destinatario]
@@ -184,7 +191,7 @@ class P2P_Node:
                 self.encryption.set_key(shared_key_bytes)
 
                 # mensagem sem criptografia
-                texto_plano = ' '.join(l[:-1])
+                texto_plano = ' '.join(msg[:-1])
 
                 #criptografa a mensagem usando a combinação dos algoritmos RC4, ECC_Ed25519 E SHA3_512
                 msg_criptada_assinada = self.encryption.encrypt(texto_plano.encode('utf-8'))
@@ -198,25 +205,31 @@ class P2P_Node:
 
             #Manda a mensagem para todos os usuários de uma só vez
             else:
-                chave_destinatario_diffie_hellman = self.chaves_publicas_Diffie_Hellman[id_destinatario]
 
-                self.dh.generate_secret_key(chave_destinatario_diffie_hellman)
+                for Id in self.pares:
 
-                shared_key = self.dh.get_secret_key()
+                    chave_destinatario = self.chaves_publicas_Diffie_Hellman[str(Id)]
 
-                shared_key_bytes = shared_key.to_bytes(16, 'big')
+                    self.dh.generate_secret_key(chave_destinatario)
 
-                self.encryption.set_key(shared_key_bytes)
+                    shared_key = self.dh.get_secret_key()
 
-                #criptografa a mensagem usando a combinação dos algoritmos RC4, ECC_Ed25519 E SHA3_512
-                msg_criptada_assinada = self.encryption.encrypt(msg_input.encode('utf-8'))
+                    shared_key_bytes = shared_key.to_bytes(16, 'big')
+
+                    self.encryption.set_key(shared_key_bytes)
+
+                    msg_criptada_assinada = self.encryption.encrypt(msg_input.encode('utf-8'))
+
+                    msg_final = msg_criptada_assinada.decode('latin-1')
+
+                    self.dicionario_msgs[str(Id)] = msg_final
 
                 #envia a mensagem para todos os usários exceto o próprio
                 UDP.broadcast_mensagem_JSON_exclui_user(self.udp_socket, {
                     "Tipo": "input",
-                    "data": msg_criptada_assinada.decode('latin-1'),
+                    "data": msg_input,
                     "id_remetente": self.myid
-                }, self.myid, self.pares)
+                }, self.myid, self.pares, self.dicionario_msgs)
                 continue
 
 
