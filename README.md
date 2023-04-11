@@ -1,8 +1,8 @@
 <h1>Projeto de Redes 💻</h1>
 </br>
-<h2>Projeto 1: Segurança numa Arquitetura P2P</h2>
+<h2>Projeto 1: Segurança numa Arquitetura P2P 🌐</h2>
 
-<h3>Objetivos do projeto:</h3>
+<h3>Objetivos do projeto:📑</h3>
 
 <li> Implementar uma arquitetura P2P </li>
 <li> Implementar  Segurança na comunicação P2P</li>
@@ -10,7 +10,7 @@
 <li> Garantir Confidencialidade</li>
 <li> Garantir Integridade</li>
 
-<h3>Algoritmos utilizados na Segurança:</h3>
+<h3>Algoritmos utilizados na Segurança: 🔐</h3>
 <li> Algoritmo de chave simétrica RC4 para criptografia</li>
 <li> Algoritmo de chave assimétrica ECC Ed25519 para assinatura de mensagem</li>
 <li> Hash SHA3_512 para verificação de integridade da mensagem</li>
@@ -43,6 +43,36 @@ que foi implementada nesse projeto e, além disso, utiliza algoritmos
 mais confiáveis atualmente. Como exemplo, atualmente não se utiliza 
 mais o RC4, já que descobriram que ele é um algoritmo não confiável
 que permite ataques.</p>
+
+
+<h3>Sobre a implementação da Segurança 👷</h3>
+
+<p>Nesta implementação foi criada uma classe "Encryption" em uma pasta separada,
+essa classe é responsável por garantir a confidencialidade, autenticidade e 
+integridade das mensagens trocadas entre os pares. A confidencialidade diz
+respeito a garantir que ninguém veja as mensagens, a autenticidade diz respeito
+a saber se a mensagem veio realmente do remetente esperado e a integridade diz
+respeito a saber se a mensagem não foi alterada.
+  
+<b>Implementação do RC4:</b>
+  
+</p>Para garantir a confidencialidade, foi utilizado a criptografia do RC4. O
+RC4 espera um parâmetro, esse parametro é uma chave que deve ser a mesma para 
+criptografar e para descriptografar. Dessa forma, para criptografar é necessário
+que o remetente tenha a mesma chave do destinatário, para realizar essa tarefa 
+foi utilizado o algoritmo Diffie Hellman para troca de chaves seguras. Basicamente
+quando um usuário é iniciado na função startpeer ele cria sua chave pública diffie 
+hellman e manda para o nó semente para que ele atualize as chaves públicas dos nós
+conectados. Assim, na hora de criptografar e descriptografar o remetente ou destinatário
+apenas pega a chave pública um do outro e gera a chave compartilhada secreta usando o
+algoritmo do diffie hellman.</p>
+
+![image](https://user-images.githubusercontent.com/104574086/231221900-3b263f4f-cf9e-403f-ba9a-50c4a97d1add.png)
+
+  
+  
+<h4>Bibliotecas utilizadas 🖥️</h4>
+
 
 
 
