@@ -90,6 +90,14 @@ algoritmo do diffie hellman.</p>
 
 <img src="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction/basic_static_app_server.png" alt="">
 
+<h3>Implementação</h3>
+
+<p>para a implementação do servidor foram utilizados os materiais disponibilizados em sala referentes à utilização de sockets e tutoriais na internet.
+    o Código se divide em 3 partes principais : primeiramente definimos a porta onde o servidor irá escutar e o endereço referente ao servidor (porta: 9898 , endereço: 0.0.0.0),
+    depois criamos uma lista de acesso máximo para permitir que apenas os usuários com endereço na lista possam acessar qualquer página no servidor
+    em seguida criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.
+</p>
+
 
 
 
