@@ -86,7 +86,7 @@ algoritmo do diffie hellman.</p>
 <li>socket (utilizada para realizar a troca de pacotes TCP)</li>
 <li>pathlib (utilizada para trabalhar com a estrutura de pastas tanto do windows como do linux)</li>
 <li>os (utilizada para trabalhar com a estrutura de pastas tanto do windows como do linux)</li>
-<li>threading (utilizada para lidar com as várias requisições que o servidor vai receber)</li>
+<li>threading (utilizada para lidar com as várias requisições que o servidor vai receber)</li><br>
 
 <img src="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction/basic_static_app_server.png" alt="">
 
