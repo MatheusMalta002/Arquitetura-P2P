@@ -73,8 +73,21 @@ algoritmo do diffie hellman.</p>
   
 <h4>Bibliotecas utilizadas 🖥️</h4>
 
+<h2>Projeto 2: Servidor Web HTTP</h2>
 
-projeto 2
+<h3>Objetivos do projeto:</h3>
+
+<li>Implementar um servidor Web utilizando sockets TCP e o protocolo HTTP 1.1</li>
+<li>Garantir a entrega de arquivos de tipos variados (binários/textos)</li>
+<li>Elaborar respostas dinâmicas ex:(200OK, 400 Bad Request, 403 Forbidden, 404 Not Found, 505 Version Not Supported)</li>
+
+<h3>Bibliotecas utilizadas na implementação:</h3>
+
+<li>socket (utilizada para realizar a troca de pacotes TCP)</li>
+<li>pathlib (utilizada para trabalhar com a estrutura de pastas tanto do windows como do linux)</li>
+<li>os (utilizada para trabalhar com a estrutura de pastas tanto do windows como do linux)</li>
+<li>threading (utilizada para lidar com as várias requisições que o servidor vai receber)</li>
+
 
 
 
