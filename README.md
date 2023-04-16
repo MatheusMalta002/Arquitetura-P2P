@@ -16,8 +16,21 @@
 <li> Hash SHA3_512 para verificação de integridade da mensagem</li>
 <li> Algoritmo Diffie Hellman para troca de chaves seguras</li>
 
+<h4>Bibliotecas utilizadas 🖥️</h4>
+<li>hashlib --> para a hash SHA3_512 </li>
+<li>nacl --> para o ECC(especificamente, nacl.signing)</li>
+<li>Cryptodome --> para o RC4 (especificamente, o módulo ARC4)</li>
+<li>random --> para o Diffie Hellman</li>
+<li>threading --> para a comunicação com socket</li>
+<li>socket --> para comunicação entre os pares</li>
+<li>time --> para imprimir os tempos pedidos no projeto (ex: tempo de envio do pacote)</li>
+<li>argparse --> para receber input no terminal</li>
+<li>json --> para enviar mensagens mais complexas como dicionários</li>
+<li>prettytable --> para imprimir os tempos em uma tabela no terminal</li>
 
-<h3>Diagrama utilizado para implementar o P2P:</h3>
+
+
+<h3>Diagrama utilizado para implementar o P2P :book: </h3>
 
 ![p2pChatRoom_image](https://user-images.githubusercontent.com/104574086/231212163-8538a19d-edef-45df-9706-7863ae5f1b38.png)
 
@@ -52,9 +65,9 @@ essa classe é responsável por garantir a confidencialidade, autenticidade e
 integridade das mensagens trocadas entre os pares. A confidencialidade diz
 respeito a garantir que ninguém veja as mensagens, a autenticidade diz respeito
 a saber se a mensagem veio realmente do remetente esperado e a integridade diz
-respeito a saber se a mensagem não foi alterada.
+respeito a saber se a mensagem não foi alterada.</p>
   
-<b>Implementação do RC4:</b>
+<p><b>Implementação do RC4:</b></p>
   
 </p>Para garantir a confidencialidade, foi utilizado a criptografia do RC4. O
 RC4 espera um parâmetro, esse parametro é uma chave que deve ser a mesma para 
@@ -69,9 +82,33 @@ algoritmo do diffie hellman.</p>
 
 ![image](https://user-images.githubusercontent.com/104574086/231221900-3b263f4f-cf9e-403f-ba9a-50c4a97d1add.png)
 
-  
-  
-<h4>Bibliotecas utilizadas 🖥️</h4>
+<p><b>Implementação do ECC Ed25519:</b></p>
+
+<p>O algoritmo ECC (Elliptic Curve Cryptography) é utilizado neste código para gerar um par
+de chaves criptográficas (pública e privada) utilizando a curva elíptica Ed25519. A biblioteca
+utilizada para isso é a nacl, mais especificamente o módulo nacl.signing. A curva Ed25519 é uma 
+das curvas elípticas mais seguras e é amplamente utilizada em algoritmos de criptografia.
+
+O objeto Encryption é uma classe que implementa um esquema de criptografia híbrida, que combina
+a criptografia simétrica com RC4 (método encrypt) e a assinatura digital usando ECC Ed25519 (método encrypt).
+O RC4 é um algoritmo de criptografia simétrica que usa uma chave secreta compartilhada entre as partes para 
+criptografar e descriptografar dados. A assinatura digital usando ECC Ed25519 é usada para garantir a autenticidade
+e a integridade dos dados.</p>
+
+<p><b>Implementação da Hash SHA3_512:</b></p>
+
+<p>A função hash utilizada é a sha3_512 da biblioteca hashlib. Essa função aplica o 
+algoritmo de hash SHA-3 (Secure Hash Algorithm-3) com tamanho de saída de 512 bits.
+
+O objetivo da utilização do hash SHA-3 na classe Encryption é garantir a integridade da 
+mensagem criptografada. Ou seja, se a mensagem for adulterada após a criptografia, o hash
+será diferente do original e a verificação de integridade irá falhar, indicando que a mensagem foi modificada.
+Assim, a utilização da função sha3_512 em conjunto com o algoritmo de assinatura digital aumenta a
+segurança da classe Encryption e garante que as mensagens sejam enviadas com confidencialidade, autenticidade e integridade.</p>
+
+<p><b>[ Informações sobre o Diffie Hellman se encontram no próprio código ]</b></p
+
+</br>
 
 <h2>Projeto 2: Servidor Web HTTP</h2>
 
