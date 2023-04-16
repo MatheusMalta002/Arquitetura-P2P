@@ -80,8 +80,6 @@ conectados. Assim, na hora de criptografar e descriptografar o remetente ou dest
 apenas pega a chave pública um do outro e gera a chave compartilhada secreta usando o
 algoritmo do diffie hellman.</p>
 
-![image](https://user-images.githubusercontent.com/104574086/231221900-3b263f4f-cf9e-403f-ba9a-50c4a97d1add.png)
-
 <p><b>Implementação do ECC Ed25519:</b></p>
 
 <p>O algoritmo ECC (Elliptic Curve Cryptography) é utilizado neste código para gerar um par
@@ -106,7 +104,13 @@ será diferente do original e a verificação de integridade irá falhar, indica
 Assim, a utilização da função sha3_512 em conjunto com o algoritmo de assinatura digital aumenta a
 segurança da classe Encryption e garante que as mensagens sejam enviadas com confidencialidade, autenticidade e integridade.</p>
 
-<p><b>[ Informações sobre o Diffie Hellman se encontram no próprio código ]</b></p
+<p><b>[ Informações sobre o Diffie Hellman se encontram no próprio código ]</b></p>
+
+
+https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5-a8aa-094e0da9d815.mp4
+
+
+
 
 </br>
 
