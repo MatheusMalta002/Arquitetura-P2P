@@ -14,7 +14,7 @@
 
 import os
 import time
-from main import P2P_Node
+from p2p import P2P_Node
 
 for i in range(3):
     command = 'python main.py --port 889{} --user id{}'.format(i+1,i+1)

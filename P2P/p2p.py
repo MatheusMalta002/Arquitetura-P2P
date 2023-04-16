@@ -2,16 +2,17 @@ import threading
 import socket
 import json
 import time
-import udp as UDP
-from encryption import Encryption, DiffieHellman
-from config import seed as semente
+from P2P import udp as UDP
+from P2P import encryption
+from P2P import  config
 import argparse
+from prettytable import PrettyTable
 
 
 class P2P_Node:
 
     def __init__(self):
-        self.seed = semente
+        self.seed = config.seed
         self.pares = {}
         self.udp_socket = {}
         self.chaves_publicas_ECC_Ed25519 = {}
@@ -19,11 +20,11 @@ class P2P_Node:
         self.myid = ""
         self.primo = 23
         self.gerador = 5
-        self.dh = DiffieHellman(self.primo, self.gerador)
-        self.encryption = Encryption()
+        self.dh = encryption.DiffieHellman(self.primo, self.gerador)
+        self.encrypt = encryption.Encryption()
         self.dicionario_msgs = {}
 
-    """Método destinatario receber as mensagens"""
+    """Método para receber as mensagens"""
 
     def receive(self):
 
@@ -91,6 +92,13 @@ class P2P_Node:
                 # Recebe a mensagem criptografada e com a assinatura do remetente
                 mensagem_criptada_assinada = acao['data'].encode('latin-1')
 
+                time.sleep(0.1)
+
+                timestamp_depois = time.time()
+
+                 # calcula o tamanho em bytes da mensagem
+                tamanho_mensagem_bytes = len(mensagem_criptada_assinada)
+
                 # O id do remetente que ele mandou
                 id_remetente = str(acao['id_remetente'])
 
@@ -108,16 +116,51 @@ class P2P_Node:
                 shared_key_bytes = shared_key.to_bytes(16, 'big')
 
                 # coloca a chave no RC4 para descriptogrfar
-                self.encryption.set_key(shared_key_bytes)
+                self.encrypt.set_key(shared_key_bytes)
 
                 # pega a chave publica do remetente destinatario verificar a assinatura
                 chave_publica_remetente = self.chaves_publicas_ECC_Ed25519[id_remetente].encode('latin-1')
 
+                tempo_descriptografar_inicial = time.time()
                 # descriptografa a mensagem e verifica a assinatura
-                msg_verificada = self.encryption.decrypt(mensagem_criptada_assinada, chave_publica_remetente)
+                msg_verificada = self.encrypt.decrypt(mensagem_criptada_assinada, chave_publica_remetente)
+
+                time.sleep(0.1)
+
+                tempo_descriptografar_final = time.time()
+
+                tempo_total_descriptografia = tempo_descriptografar_final - tempo_descriptografar_inicial
+
+                #tempo no inicio de envio do pacote
+                timestamp_antes = acao['timestamp']
+
+                #tempo de transmissão = valor do tempo quando chegou - o inicial
+                tempo_transmissao = timestamp_depois - timestamp_antes
+
+                #Daqui para baixo imprime as informações no terminal
+
+                infos = PrettyTable()
+
+                infos.field_names = ["Tamanho do Pacote", "Tempo de Transmissão", "Tempo de Criptografia", "Tempo para Descriptografar", "Tempo Total Gasto"]
+
+                tamanho_msg_bytes = f'{tamanho_mensagem_bytes} bytes'
+
+                tempo_transm = f'{tempo_transmissao:.4f} segundos.'
+
+                tempo_criptografia = f"{acao['tempo_criptografia']:.4f} segundos."
+
+                tempo_descriptografia = f'{tempo_total_descriptografia:.4f} segundos'
+
+                tempo_total_gasto = f"{tempo_transmissao + tempo_total_descriptografia + acao['tempo_criptografia']:.4f} segundos."
+
+                infos.add_row([tamanho_msg_bytes, tempo_transm, tempo_criptografia, tempo_descriptografia, tempo_total_gasto])
 
                 # imprime a mensagem
                 print(f'\n{id_remetente}: {msg_verificada.decode()}\n')
+
+                #imprime a tabela com os tempos
+                time.sleep(1)
+                print(f'{infos}\n')
             
 
             if acao['Tipo'] == 'sair':
@@ -128,12 +171,13 @@ class P2P_Node:
                 value, key = self.pares.pop(acao['data'])
                 print(f"\n{acao['data']} saiu do chat.")
 
+
     """Método para iniciar o par e usar o nó seed para atualizar os outros pares"""
 
     def startpeer(self):
 
         #Cria a chave pública do algoritmo ECC_Ed25519
-        chave_publica = self.encryption.chave_publica
+        chave_publica = self.encrypt.chave_publica
 
         #Cria a chave pública Diffie Hellman
         public_key_diffie_hellman = self.dh.get_public_key()
@@ -145,6 +189,7 @@ class P2P_Node:
             "public_key": chave_publica.decode('latin-1'),
             "Diffie_Hellman_key": public_key_diffie_hellman
         })
+
     
     """Método para enviar as mensagens"""
 
@@ -188,22 +233,34 @@ class P2P_Node:
                 shared_key_bytes = shared_key.to_bytes(16, 'big')
 
                 # usa a chave compartilhada no RC4 para criptografar
-                self.encryption.set_key(shared_key_bytes)
+                self.encrypt.set_key(shared_key_bytes)
 
                 # mensagem sem criptografia
                 texto_plano = ' '.join(msg[:-1])
 
+                tempo_criptografia_inicial = time.time()
+
                 #criptografa a mensagem usando a combinação dos algoritmos RC4, ECC_Ed25519 E SHA3_512
-                msg_criptada_assinada = self.encryption.encrypt(texto_plano.encode('utf-8'))
+                msg_criptada_assinada = self.encrypt.encrypt(texto_plano.encode('utf-8'))
+
+                time.sleep(0.1)
+
+                tempo_criptografia_final = time.time()
+
+                tempo_total_criptografia = tempo_criptografia_final - tempo_criptografia_inicial
+
+                timestamp_antes = time.time()
 
                 #envia a mensagem para o usário específico
                 UDP.enviar_mensagem_JSON(self.udp_socket, destinatario, {
                     "Tipo": "input",
                     "data": msg_criptada_assinada.decode('latin-1'),
-                    "id_remetente": self.myid
+                    "id_remetente": self.myid,
+                    "timestamp": timestamp_antes,
+                    "tempo_criptografia": tempo_total_criptografia
                 })
 
-            #Manda a mensagem para todos os usuários de uma só vez
+            #Manda a mensagem criptografada para todos os usuários de uma só vez
             else:
 
                 for Id in self.pares:
@@ -216,19 +273,31 @@ class P2P_Node:
 
                     shared_key_bytes = shared_key.to_bytes(16, 'big')
 
-                    self.encryption.set_key(shared_key_bytes)
+                    self.encrypt.set_key(shared_key_bytes)
 
-                    msg_criptada_assinada = self.encryption.encrypt(msg_input.encode('utf-8'))
+                    tempo_criptografia_inicial = time.time()
+
+                    msg_criptada_assinada = self.encrypt.encrypt(msg_input.encode('utf-8'))
+
+                    time.sleep(0.1)
+
+                    tempo_criptografia_final = time.time()
+
+                    tempo_total_criptografia = tempo_criptografia_final - tempo_criptografia_inicial
 
                     msg_final = msg_criptada_assinada.decode('latin-1')
 
                     self.dicionario_msgs[str(Id)] = msg_final
 
+                    timestamp_antes = time.time()
+
                 #envia a mensagem para todos os usários exceto o próprio
                 UDP.broadcast_mensagem_JSON_exclui_user(self.udp_socket, {
                     "Tipo": "input",
                     "data": msg_input,
-                    "id_remetente": self.myid
+                    "id_remetente": self.myid,
+                    "timestamp": timestamp_antes,
+                    "tempo_criptografia": tempo_total_criptografia
                 }, self.myid, self.pares, self.dicionario_msgs)
                 continue
 
@@ -251,7 +320,7 @@ def main():
     t2 = threading.Thread(target=peer.send, args=())
 
     t1.start()
-    time.sleep(1) #aguarda 1 segundo para poder receber entrada de input
+    time.sleep(1) #aguarda 1 segundo para poder receber entrada 
     t2.start()
 
 

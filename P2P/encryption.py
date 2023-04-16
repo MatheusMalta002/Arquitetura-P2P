@@ -103,7 +103,7 @@ O valor de p é um número primo que é compartilhado entre os usuários.
 Ele é usado para definir o espaço de operação do algoritmo, ou seja, 
 define o conjunto de valores possíveis que podem ser usados para gerar
 as chaves privadas e públicas. Esse valor não é secreto e pode ser 
-conhecido por qualquer pessoa, sem comprometer a segurança do algoritmo.7
+conhecido por qualquer pessoa, sem comprometer a segurança do algoritmo.
 
 #------------------#
 #sobre o valor [g] #

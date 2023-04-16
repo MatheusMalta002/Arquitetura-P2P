@@ -1,7 +1,5 @@
 seed = ("127.0.0.1",8891)
 
-
-
 # O nó semente (também conhecido como bootstrap node) é um nó especial na rede P2P que
 # é usado para ajudar outros nós a se conectar entre si. É responsável por manter uma 
 # lista de pares (também chamados de nós) que estão atualmente na rede e por responder a
