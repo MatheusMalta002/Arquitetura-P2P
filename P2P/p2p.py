@@ -333,4 +333,4 @@ if __name__ == '__main__':
 
 # exemplo:
 
-# python main.py 8891 Matheus
+# python main.py 8891 matheus
