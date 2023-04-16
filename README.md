@@ -106,8 +106,17 @@ segurança da classe Encryption e garante que as mensagens sejam enviadas com co
 
 <p><b>[ Informações sobre o Diffie Hellman se encontram no próprio código ]</b></p>
 
+</br>
+
+<h3>Executando o código</h3>
+
 
 https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5-a8aa-094e0da9d815.mp4
+
+<h4>Informações de cada mensagem</h4>
+
+![image](https://user-images.githubusercontent.com/104574086/232347414-327048a3-bcd5-4f82-9fe8-fbb73ee44e57.png)
+
 
 
 
