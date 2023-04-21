@@ -130,6 +130,7 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 <li>Implementar um servidor Web utilizando sockets TCP e o protocolo HTTP 1.1</li>
 <li>Garantir a entrega de arquivos de tipos variados (binários/textos)</li>
 <li>Elaborar respostas dinâmicas ex:(200OK, 400 Bad Request, 403 Forbidden, 404 Not Found, 505 Version Not Supported)</li>
+<li>Garantir a navegação em pastas no diretório principal do projeto</li>
 
 <h3>Bibliotecas utilizadas na implementação:</h3>
 
@@ -152,7 +153,12 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 
 <li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li>
 
-<li></li>
+<li>por fim aceitamos a conexão com o usuário dentro do loop "while true"</li>
+
+<h3>Executando o Código</h3>
+
+
+
 
 
 
