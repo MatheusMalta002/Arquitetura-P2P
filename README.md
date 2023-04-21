@@ -157,6 +157,7 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 
 <h3>Executando o Código</h3>
 
+![image](https://user-images.githubusercontent.com/104530831/233746894-9a01e62d-0861-4fed-b520-c11312c449ce.png)
 
 
 
