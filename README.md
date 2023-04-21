@@ -158,7 +158,7 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 <h3>Executando o Código</h3>
 
 ![image](https://user-images.githubusercontent.com/104530831/233746894-9a01e62d-0861-4fed-b520-c11312c449ce.png)
-
+<li>após executar o arquivo .py colocamos na url do navegador : "localhost:9898" e assim ele retornará a página index.html com todos os arquivos</li>
 <h4>mensagens do terminal:</h4>
 
 ![image](https://user-images.githubusercontent.com/104530831/233747203-55ab566a-cbd7-474e-bc2c-850b41d69666.png)
