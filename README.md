@@ -159,6 +159,12 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 
 ![image](https://user-images.githubusercontent.com/104530831/233746894-9a01e62d-0861-4fed-b520-c11312c449ce.png)
 
+<h4>mensagens do terminal:</h4>
+
+![image](https://user-images.githubusercontent.com/104530831/233747203-55ab566a-cbd7-474e-bc2c-850b41d69666.png)
+
+![image](https://user-images.githubusercontent.com/104530831/233747250-f34468b2-4819-4f19-b876-5ca2214672f5.png)
+
 
 
 
