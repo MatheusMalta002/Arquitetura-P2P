@@ -117,6 +117,18 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 
 ![image](https://user-images.githubusercontent.com/104574086/232347414-327048a3-bcd5-4f82-9fe8-fbb73ee44e57.png)
 
+<h3>Guia para execução do código</h3>
+<h4>1.Instalar as bibliotecas</h4>
+<li>pip install threading, socket, json, time, argparse, prettytable (libs do arquivo p2p.py)</li>
+<li>pip install pycryptodome, pynacl, hashlib (libs do arquivo encryption.py)</li>
+
+<h4>2.Baixar os arquivos da pasta P2P</h4>
+Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11302533/P2P.zip)
+
+<h4>3.Executar o arquivo no seu editor de código fonte (ex: Vscode)</h4>
+<li> comando para executar no terminal: python p2p.py --port 8891 --user Fulano</li>
+
+
 
 
 
