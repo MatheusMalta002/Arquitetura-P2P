@@ -106,8 +106,29 @@ segurança da classe Encryption e garante que as mensagens sejam enviadas com co
 
 <p><b>[ Informações sobre o Diffie Hellman se encontram no próprio código ]</b></p>
 
+</br>
+
+<h3>Executando o código</h3>
+
 
 https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5-a8aa-094e0da9d815.mp4
+
+<h4>Informações de cada mensagem</h4>
+
+![image](https://user-images.githubusercontent.com/104574086/232347414-327048a3-bcd5-4f82-9fe8-fbb73ee44e57.png)
+
+<h3>Guia para execução do código</h3>
+<h4>1.Instalar as bibliotecas</h4>
+<li>pip install threading, socket, json, time, argparse, prettytable (libs do arquivo p2p.py)</li>
+<li>pip install pycryptodome, pynacl, hashlib (libs do arquivo encryption.py)</li>
+
+<h4>2.Baixar os arquivos da pasta P2P</h4>
+Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11302533/P2P.zip)
+
+<h4>3.Executar o arquivo no seu editor de código fonte (ex: Vscode)</h4>
+<li> comando para executar no terminal: python p2p.py --port 8891 --user Fulano</li>
+
+
 
 
 
@@ -121,6 +142,7 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 <li>Implementar um servidor Web utilizando sockets TCP e o protocolo HTTP 1.1</li>
 <li>Garantir a entrega de arquivos de tipos variados (binários/textos)</li>
 <li>Elaborar respostas dinâmicas ex:(200OK, 400 Bad Request, 403 Forbidden, 404 Not Found, 505 Version Not Supported)</li>
+<li>Garantir a navegação em pastas no diretório principal do projeto</li>
 
 <h3>Bibliotecas utilizadas na implementação:</h3>
 
@@ -139,11 +161,46 @@ https://user-images.githubusercontent.com/104574086/232342185-528c0fca-8e80-4ae5
 
 <li>primeiramente definimos a porta onde o servidor irá escutar e o endereço referente ao servidor (porta: 9898 , endereço: 0.0.0.0),
     depois criamos uma lista de acesso máximo para permitir que apenas os usuários com endereço na lista possam acessar qualquer página no servidor
-</li>
+</li><br>
 
-<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li>
+![image](https://user-images.githubusercontent.com/104530831/234750863-162f88d9-8836-446f-8724-9747748b5381.png)
 
-<li></li>
+<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente. Essa função é a mais importante do código já que todas as requisições feitas pelos clientes conectados são processadas nela, sendo assim, a depender do tipo do arquivo e caso o usuário tenha digitado corretamente a URL, serão retornadas respostas dinâmicas aos clientes e páginas HTML referentes ao erro caso a requisição não possa ser cumprida.</li><br>
+
+![image](https://user-images.githubusercontent.com/104530831/234750778-2cba1e70-d5a7-4132-9334-af8bee371590.png)
+
+<li>por fim aceitamos a conexão com o usuário dentro do loop "while true" e encerramos a conexão quando não existem mais arquivos para enviar ao cliente</li><br>
+
+![image](https://user-images.githubusercontent.com/104530831/234750907-2e1c64cc-f706-49cd-bbbe-05af46e411fc.png)
+
+<h3>Executando o Código</h3>
+
+![image](https://user-images.githubusercontent.com/104530831/233746894-9a01e62d-0861-4fed-b520-c11312c449ce.png)
+<li>após executar o arquivo .py colocamos na url do navegador : "localhost:9898" e assim ele retornará a página index.html com todos os arquivos</li>
+
+![image](https://user-images.githubusercontent.com/104530831/234747805-a89dcdda-b83a-4bb1-9b85-553b814cd8e7.png)
+
+<h4>mensagens do terminal:</h4>
+
+![image](https://user-images.githubusercontent.com/104530831/233747203-55ab566a-cbd7-474e-bc2c-850b41d69666.png)
+
+![image](https://user-images.githubusercontent.com/104530831/233747250-f34468b2-4819-4f19-b876-5ca2214672f5.png)
+
+<h4>Capturas do Wireshark :</h4>
+
+<li>200OK:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748669-0e15bc56-d717-421b-b126-94078b991391.png)
+
+<li>404 Not Found:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748881-cb036be6-397a-4c0c-bdd5-404473aee3a2.png)
+
+<li>403 Forbidden:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748971-a38f9a49-93f0-4419-bf79-fd6e8f544eca.png)
+
+<li>400 Bad Request:</li>
+![image](https://user-images.githubusercontent.com/104530831/234749256-ca1cde39-09f5-4ca3-893a-40595646c03a.png)
+
+
 
 
 
