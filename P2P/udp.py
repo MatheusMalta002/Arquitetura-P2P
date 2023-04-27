@@ -24,7 +24,7 @@ def enviar_mensagem_JSON(udp_socket, toA, mensagem):
     enviar_mensagem_base(udp_socket, toA, json.dumps(mensagem))
 
 
-# Função para enviar mensagem para vários peers
+# Função para enviar mensagem para TODOS peer
 def broadcast_mensagem_base(udp_socket, mensagem, peers):
     for p in peers.values():
         enviar_mensagem_base(udp_socket, p, mensagem)

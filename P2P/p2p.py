@@ -2,9 +2,9 @@ import threading
 import socket
 import json
 import time
-from P2P import udp as UDP
-from P2P import encryption
-from P2P import  config
+import udp as UDP
+import encryption
+import config
 import argparse
 from prettytable import PrettyTable
 
@@ -166,7 +166,7 @@ class P2P_Node:
             if acao['Tipo'] == 'sair':
                 if (self.myid == acao['data']):
                     time.sleep(0.5)
-                    break;
+                    break
 
                 value, key = self.pares.pop(acao['data'])
                 print(f"\n{acao['data']} saiu do chat.")
@@ -197,6 +197,10 @@ class P2P_Node:
 
         while 1:
             msg_input = input(">> ")
+
+            if msg_input == '' or msg_input == None:
+                print(f"\nDigite alguma coisa antes de enviar !!!\n")
+                break
 
             #sai do chat
             if msg_input == "sair":

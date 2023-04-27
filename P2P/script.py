@@ -14,13 +14,17 @@
 
 import os
 import time
-from p2p import P2P_Node
+import subprocess
 
 for i in range(3):
-    command = 'python main.py --port 889{} --user id{}'.format(i+1,i+1)
+    command = 'python p2p.py --port 889{} --user id{}'.format(i+1,i+1)
     # can't create peers too fast. 
     time.sleep(0.2) 
     os.system('start cmd /k "{}"'.format(command))
+    
+
+    subprocess.Popen(['echo', 'oi'], shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    time.sleep(2)
 
 
 """
