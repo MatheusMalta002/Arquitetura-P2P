@@ -165,7 +165,7 @@ Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11
 
 ![image](https://user-images.githubusercontent.com/104530831/234750863-162f88d9-8836-446f-8724-9747748b5381.png)
 
-<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li><br>
+<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente. Essa função é a mais importante do código já que todas as requisições feitas pelos clientes conectados são processadas nela, sendo assim, a depender do tipo do arquivo e caso o usuário tenha digitado corretamente a URL, serão retornadas respostas dinâmicas aos clientes e páginas HTML referentes ao erro caso a requisição não possa ser cumprida.</li><br>
 
 ![image](https://user-images.githubusercontent.com/104530831/234750778-2cba1e70-d5a7-4132-9334-af8bee371590.png)
 
