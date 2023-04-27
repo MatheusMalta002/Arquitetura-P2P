@@ -165,7 +165,7 @@ Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11
 
 <li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li>
 
-<li>por fim aceitamos a conexão com o usuário dentro do loop "while true"</li>
+<li>por fim aceitamos a conexão com o usuário dentro do loop "while true" e encerramos a conexão quando não existem mais arquivos para enviar ao cliente</li>
 
 <h3>Executando o Código</h3>
 
