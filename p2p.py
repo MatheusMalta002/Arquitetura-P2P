@@ -198,6 +198,10 @@ class P2P_Node:
         while 1:
             msg_input = input(">> ")
 
+            if msg_input == '' or msg_input == None:
+                print(f"\nDigite alguma coisa antes de enviar !!!\n")
+                continue
+
             #sai do chat
             if msg_input == "sair":
                 UDP.broadcast_mensagem_JSON(self.udp_socket, {
