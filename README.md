@@ -161,15 +161,15 @@ Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11
 
 <li>primeiramente definimos a porta onde o servidor irá escutar e o endereço referente ao servidor (porta: 9898 , endereço: 0.0.0.0),
     depois criamos uma lista de acesso máximo para permitir que apenas os usuários com endereço na lista possam acessar qualquer página no servidor
-</li>
+</li><br>
 
 ![image](https://user-images.githubusercontent.com/104530831/234750863-162f88d9-8836-446f-8724-9747748b5381.png)
 
-<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li>
+<li>criamos a função "Server_Thread" responsável por lidar com as múltiplas requisições feitas pelo cliente, analisar o cabeçalho da requisição, conseguir o nome e extensão do arquivo e fornecer as respostas dinamicamente.</li><br>
 
 ![image](https://user-images.githubusercontent.com/104530831/234750778-2cba1e70-d5a7-4132-9334-af8bee371590.png)
 
-<li>por fim aceitamos a conexão com o usuário dentro do loop "while true" e encerramos a conexão quando não existem mais arquivos para enviar ao cliente</li>
+<li>por fim aceitamos a conexão com o usuário dentro do loop "while true" e encerramos a conexão quando não existem mais arquivos para enviar ao cliente</li><br>
 
 ![image](https://user-images.githubusercontent.com/104530831/234750907-2e1c64cc-f706-49cd-bbbe-05af46e411fc.png)
 
