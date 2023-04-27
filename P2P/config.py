@@ -7,6 +7,6 @@ seed = ("127.0.0.1",8891)
 # ele envia uma mensagem para o nó semente, que responde com a lista atualizada de pares 
 # na rede. Isso permite que o novo nó se conecte com outros nós e comece a enviar e receber 
 # mensagens. Sem o nó semente, os nós teriam que descobrir uns aos outros por conta própria,
-# o que seria difícil em uma rede grande e dinâmica.
+# o que seria difícil em uma rede grande e dinâmica..
 
 

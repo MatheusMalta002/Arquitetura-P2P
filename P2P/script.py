@@ -28,7 +28,7 @@ for i in range(3):
 
 
 """
-Essa pasta serve apenas para iniciar 4 pares de uma vez
+Essa pasta serve apenas para iniciar 4 pares de uma vez.
 
 Basta executar a pasta ex: --> python script.py
 

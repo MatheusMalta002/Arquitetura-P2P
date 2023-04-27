@@ -5,7 +5,7 @@ import json
 
 """As mensagens foram serializadas usando json para
    poder enviar mensagens mais complexas como dicionários
-   e arrays.
+   e arrays
 """
 
 # Função para enviar mensagem como string para um endereço

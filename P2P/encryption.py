@@ -30,7 +30,7 @@ class Encryption:
         # Retorna a mensagem assinada, o texto criptografado e o hash da mensagem
         return mensagem_assinada + ciphertext + ciphertext_hash
 
-    """Método para descriptografar e verificar assinatura e verificar se houve alteração na hash"""
+    """Método para descriptografar e verificar assinatura e verificar se houve alteração na hash."""
 
     def decrypt(self, mensagem_criptografada, chave_publica):
 

@@ -335,6 +335,6 @@ if __name__ == '__main__':
 
 # python @nome_do_arquivo @porta @id1
 
-# exemplo:
+# exemplo::
 
 # python main.py 8891 matheus
