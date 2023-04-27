@@ -180,6 +180,20 @@ Download: [P2P.zip](https://github.com/MatheusMalta002/Projeto-de-Redes/files/11
 
 ![image](https://user-images.githubusercontent.com/104530831/233747250-f34468b2-4819-4f19-b876-5ca2214672f5.png)
 
+<h4>Capturas do Wireshark :</h4>
+
+<li>200OK:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748669-0e15bc56-d717-421b-b126-94078b991391.png)
+
+<li>404 Not Found:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748881-cb036be6-397a-4c0c-bdd5-404473aee3a2.png)
+
+<li>403 Forbidden:</li>
+![image](https://user-images.githubusercontent.com/104530831/234748971-a38f9a49-93f0-4419-bf79-fd6e8f544eca.png)
+
+<li>400 Bad Request:</li>
+![image](https://user-images.githubusercontent.com/104530831/234749256-ca1cde39-09f5-4ca3-893a-40595646c03a.png)
+
 
 
 
